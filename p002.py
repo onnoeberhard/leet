@@ -22,3 +22,25 @@ def add2(l1, l2):
         new = new.next
     return res.next
 
+def sol_old(l1, l2):
+    carry = 0
+    res = ListNode()
+    y = res
+    while l1 or l2 or carry:
+        x = carry
+        carry = 0
+        if l1:
+            x += l1.val
+            l1 = l1.next
+        if l2:
+            x += l2.val
+            l2 = l2.next
+        if x >= 10:
+            carry = 1
+            x -= 10
+        y.val = x
+        if l1 or l2 or carry:
+            y.next = ListNode()
+            y = y.next
+    return res
+
