@@ -39,4 +39,28 @@ def sol2(s):
     l, s = f(0, (), False)
     return s[::-1] + s if l % 2 == 0 else s[:0:-1] + s
 
+def sol_old(self, s):
+    rs = [i for i in range(len(s) - 1) if s[i] == s[i + 1]]
+    cs = list(range(len(s)))
+    longest = s[rs[0] : rs[0] + 2] if rs else s[cs[0]]
+    
+    for l in range(1, len(s)):
+        cs_ = []
+        for c in cs:
+            if c - l >= 0 and c + l < len(s) and s[c - l] == s[c + l]:
+                cs_.append(c)
+        
+        rs_ = []
+        for r in rs:
+            if r - l >= 0 and r + l + 1 < len(s) and s[r - l] == s[r + l + 1]:
+                rs_.append(r)
+                
+        if rs_ or cs_:
+            rs = rs_
+            cs = cs_
+            longest = s[rs[0] - l : rs[0] + l + 2] if rs else s[cs[0] - l : cs[0] + l + 1]
+        else:
+            break
+    
+    return longest
 
