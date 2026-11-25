@@ -1,7 +1,7 @@
 def sol(digits):
     abc = ['abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz']
     keys = {str(x): a for x, a in zip(range(2, 10), abc)}
-    res = []
+    res = ['']
     for d in digits:
         res = [t + c for t in res for c in keys[d]]
     return res
